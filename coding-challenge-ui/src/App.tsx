@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-
+import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
+
+import { type Sale, Store, User } from "../../interfaces";
+
+import { OverdueOrders } from "./OverdueOrders";
 
 const AppWrapper = styled.div`
   height: 100vh;
@@ -24,12 +28,13 @@ const Username = styled.span`
   font-family: "Roboto", sans-serif;
 `;
 
-interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  id: number;
-}
+const AppBody = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -43,13 +48,17 @@ const App = () => {
   }, []);
 
   return (
-    <AppWrapper>
-      <AppHeader>
-        <HeaderText>Analytics Dashboard</HeaderText>
-        <Username>Welcome, {user ? user.firstName : "Guest"}!</Username>
-      </AppHeader>
-      {/** Dashboard - new widgets go here */}
-    </AppWrapper>
+    <BrowserRouter>
+      <AppWrapper>
+        <AppHeader>
+          <HeaderText>Analytics Dashboard</HeaderText>
+          <Username>Welcome, {user ? user.firstName : "Guest"}!</Username>
+        </AppHeader>
+        <AppBody>
+          <OverdueOrders />
+        </AppBody>
+      </AppWrapper>
+    </BrowserRouter>
   );
 };
 
