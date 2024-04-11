@@ -1,4 +1,4 @@
-import { ShippingStatusEnum } from "../../enums";
+import { ShippingStatusEnum } from "./enums";
 
 export interface Order {
   Id: string;

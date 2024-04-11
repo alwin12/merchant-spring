@@ -12,7 +12,7 @@ import {
 } from "../types";
 
 import { getDaysOverdue } from "../utils";
-import { ShippingStatusEnum } from "../../../enums";
+import { ShippingStatusEnum } from "../enums";
 
 type SortOrder = "asc" | "desc";
 
