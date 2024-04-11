@@ -1,32 +1,39 @@
-# Coding Challenge
+# Thank You
 
-This coding challenge is designed to assess how you approach and solve a problem that is very similar to the day to day way of working at MerchantSpring. It is based off a real requirement to give you a sense of what the work is like, however it is not real work for our product. It shouldn't take more than a few hours, there are no hidden tricks, please approch this problem as you would if you were releasing it to production.
+Hi team,
 
-## Assets
+Thank you for providing me the opportunity to work on this task!
 
-- coding-challenge-ui - this is the front end (React + Typescript)
-- coding-challnge-api - this is the backend (NodeJS, Typescript + Express)
+# Issues
 
-### To run both:
+- **Inefficient Data Retrieval:** As mentioned in my email, implementing pagination and sorting with gzip files is challenging due to their sequential access nature. This can lead to increased server resource consumption as a large portion of the file may need to be processed in memory. Furthermore, the time it takes for a user to access a specific page increases linearly with the page number. My current understanding is that customers of MerchantSpring export their data in gzip format for importation and display on the dashboard.
 
-`npm run dev`
+- **Proposed Solution:** One strategy is to populate the database as soon as we receive the exported file asyncronously. This would allow users to directly query the database, facilitating efficient pagination with OFFSET and LIMIT clauses and utilizing database indexes for swift sorting and filtering.
+As soon as a gzip file is received, it could be uploaded to an AWS S3 bucket. This would trigger a message to an SNS topic, which would then forward the message to an SQS system. A Lambda function could process the message from the SQS queue. This method offers several benefits:
 
-### To run tests:
+- **Decoupling:** Separates the file upload process from data processing tasks.
+- **Scalability:** Adjusts to the volume of uploaded files.
+- **Durability and Reliability:** Ensures message retention and retrieval in case of processing failures.
 
-`npm run test`
+- **Data Caching:** Frequently accessed data could be cached in memory storage solutions like Redis. This approach enhances data retrieval efficiency.
 
-## Requirements
 
-- Provided is a wireframe for a widget we would like you to build (wireframe.jpeg) The application helps marketplace sellers with cross-marketplace data insights. The widget we want you to build is a view of the orders that have been placed that are overdue for shipping.
-- The data to populate the widget is provided in two .csv files (coding-challenge-api/data). The orders data is gzipped due to its size.
-- Create an REST api that reads in data from the csv and returns it to the front-end
-  in the appropriate format
-- Create the required components on the front-end to match the wireframe
-- Write production quality code and follow best practises for testing
-- Note that the wireframe has an option for sorting, please make sure the implementation reflects this
-- You can use any third party libraries you want to
-- You can refactor the code, both your own and the existing code, as long as it can be run locally with the same commands
-- Please don't change the format of the csv
-- The code should run locally on your machine (doesn't need to be deployed anywhere)
-- Please check the completed challenge in to a git repository and email us the link
-- If you have any questions about the challenge or the requirements please feel free to reach out to the team and we will answer them :)
+## Other Issues
+
+- **Testing Challenges:** Encountered issues include:
+  1) Errors thrown by Jest related to the table library used, potentially linked to an open issue on GitHub (https://github.com/table-library/react-table-library/issues/104).
+  2) Ineffectiveness of jest.mock in mocking certain backend modules.
+
+## Exclusions in This Implementation
+
+- **UI:** The current UI is basic and can be improved with better loading indicators, value formatting, and styling.
+
+- **Frontend Performance Enhancements:** Data caching on the frontend can be optimized, for example, by using Apollo with GraphQL.
+
+- **Type Sharing in TypeScript:** Types have been duplicated; however, a monorepo or tools like Trpc could facilitate type sharing.
+
+- **Debouncing Navigation and Sorting Controls:** Implementing debounce on "next," "previous," and "sort" buttons could prevent excessive backend requests.
+
+- **Additional Testing:** Further testing is required to ensure robustness.
+
+- Apologies as I have included everything in a single commit which is not a good practise at all! :)
