@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 
-import { type Sale, Store, User } from "../../interfaces";
+import { User } from "./types";
 
 import { OverdueOrders } from "./OverdueOrders";
 

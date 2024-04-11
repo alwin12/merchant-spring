@@ -1,14 +1,15 @@
 import React from "react";
 
 /**
- * I have used a lightweight table library to fit this specific use case. There are other libraries like MUI table , datagrid that can be used.
- * A table library can also be build from scratch depending on our use case
+ * I have used a lightweight table library to fit this specific use case. There are other libraries like MUI table , AG datagrid that can be used.
+ * A table library can also be build from scratch depending on our use case.
  */
 import { CompactTable } from "@table-library/react-table-library/compact";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
-import { useOrdersWithStoreDetails, usePagination } from "./hooks";
 import { useSort } from "@table-library/react-table-library/sort";
+
+import { useOrdersWithStoreDetails, usePagination } from "./hooks";
 
 import { type OrderWithStoreDetails } from "./types";
 
